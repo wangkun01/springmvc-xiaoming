@@ -10,6 +10,7 @@ import com.sun.istack.internal.Nullable;
 public class XMBeanDefinition {
 
     private String beanName;
+    //延时加载
     private boolean lazyInit = false;
     //这么命名是工厂产生的bean
     private String factoryBeanName;

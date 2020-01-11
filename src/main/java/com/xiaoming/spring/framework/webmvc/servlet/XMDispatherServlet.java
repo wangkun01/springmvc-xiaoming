@@ -118,7 +118,7 @@ public class XMDispatherServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //doDispatch(req,resp);
-        String url = req.getRequestURI();
+/*        String url = req.getRequestURI();
         String contextPath = req.getContextPath();
         url = url.replaceAll(contextPath," ");
 
@@ -129,18 +129,20 @@ public class XMDispatherServlet extends HttpServlet {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
             e.printStackTrace();
-        }
+        }*/
 
     }
 
     private void doDispatch(HttpServletRequest req, HttpServletResponse resp) {
-        XMHandlerMapping mappedHandler =  getHandler(req);
+
+
+/*        XMHandlerMapping mappedHandler =  getHandler(req);
 
         XMHandlerAdapter ha = getHandlerAdapter(mappedHandler);
 
          XMModelAndView mv = ha.handle(req,resp,mappedHandler);
 
-         processDispatchResult(req,mv);
+         processDispatchResult(req,mv);*/
     }
 
     private void processDispatchResult(HttpServletRequest req, XMModelAndView mv) {

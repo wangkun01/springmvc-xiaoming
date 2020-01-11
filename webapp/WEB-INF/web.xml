@@ -6,7 +6,7 @@
 
     <servlet>
         <servlet-name>xiaomingmvc</servlet-name>
-        <servlet-class>com.xiaoming.spring.framework.webmvc.servlet.XMDispatherServlet</servlet-class>
+        <servlet-class>com.xiaoming.spring.framework.webmvc.servlet.XMDispatherServletTest</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>classpath:application.properties</param-value>

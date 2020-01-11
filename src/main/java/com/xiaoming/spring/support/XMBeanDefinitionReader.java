@@ -25,9 +25,9 @@ public class XMBeanDefinitionReader {
     private final String SCAN_PACKAGE = "scanPackage";
 
 
-    //读取spring的配置文件，获取到配置的包扫描路径
+    //读取spring的配置文件，对配置文件进行查找、读取、结息,获取到配置的包扫描路径
     public XMBeanDefinitionReader(String... locations){
-        InputStream is = this.getClass().getClassLoader().getResourceAsStream(locations[0]);
+        InputStream is = this.getClass().getClassLoader().getResourceAsStream(locations[0].replace("classpath:",""));
         try {
             config.load(is);
         } catch (IOException e) {
@@ -42,6 +42,7 @@ public class XMBeanDefinitionReader {
             }
         }
 
+        //获取自动扫描的包名
         doLoadBeanDefinitions(config.getProperty(SCAN_PACKAGE));
 
     }
@@ -55,6 +56,7 @@ public class XMBeanDefinitionReader {
         if(registryBeanClasses.contains(beanName)){
             XMBeanDefinition beanDefinition = new XMBeanDefinition();
             beanDefinition.setBeanName(beanName);
+            //FactoryBeanName bean在IOC中的名字，默认的首字母小写
             beanDefinition.setFactoryBeanName(lowerFirstCase(beanName.substring(beanName.lastIndexOf(".")+1)));
             return beanDefinition;
         }
@@ -67,7 +69,7 @@ public class XMBeanDefinitionReader {
 
     //递归扫描自动扫描包下相关的class,并且保存到List中
     private void doLoadBeanDefinitions(String packageName){
-        URL url = this.getClass().getClassLoader().getResource(packageName);
+        URL url = this.getClass().getClassLoader().getResource("/" + packageName.replaceAll("\\.","/"));
         File classDir = new File(url.getFile());
         for(File file : classDir.listFiles()){
             if(file.isDirectory()){
